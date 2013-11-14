@@ -1,3 +1,4 @@
+.token
 *.py[cod]
 
 # C extensions

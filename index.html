@@ -1,0 +1,106 @@
+<!doctype html>
+<html ng-app="gitstar">
+<head>
+  <title>GitStar</title>
+  <link href="http://simplifiedphp.org/web/typicons.font/font/typicons.min.css" rel="stylesheet" type="text/css" />
+  <link href="http://fonts.googleapis.com/css?family=Oxygen+Mono|Open+Sans:400,700" rel="stylesheet" type="text/css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+  
+    body {
+      font-family: "Open Sans", Tahoma, Arial, sans-serif;
+      font-size: 15px;
+      color: #333;
+    }
+    
+    hr {
+      border: none;
+      border-bottom: 4px solid #888;
+    }
+    
+    .section {
+      padding: 2em;
+    }
+    
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #ddd;
+      padding: 4px 10px;
+    }
+    
+    th input {
+      width: 100%;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+  <script src="lib/ng.async.js"></script>
+  <script src="lib/gitstar.js"></script>
+  <body ng-controller="main">
+    <div class="section section-auth" ng-show="!auth">
+      <input type="password" />
+      <button ng-click="authenticate()">Authenticate</button>
+    </div>
+    <hr ng-show="!auth" />
+    <div class="section section-users">
+      <table>
+        <tr>
+          <th colspan="8">
+            <span ng-if="users.pages">
+              <button ng-click="goPage(-1)" ng-if="page > 0">Prev Page</button>
+              Page {{users.page + 1}} of {{users.pages}}
+              <button ng-click="goPage(+1)" ng-if="page < users.pages - 1">Next Page</button>
+            </span>
+            <span ng-if="!users.pages">No Results</span>
+          </th>
+        </tr>
+        <tr>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Followers</th>
+          <th>Repos</th>
+          <th>Location</th>
+          <th>County</th>
+          <th>State</th>
+          <th>Language</th>
+        </tr>
+        <tr>
+          <th><input placeholder="Search Name"      type="search" ng-model="search.name" /></th>
+          <th><input placeholder="Search Username"  type="search" ng-model="search.username" /></th>
+          <th><input placeholder="Greater Than"     type="number" ng-model="search.followers" /></th>
+          <th><input placeholder="Greater Than"     type="number" ng-model="search.repos" /></th>
+          <th><input placeholder="Search Location"  type="search" ng-model="search.location" /></th>
+          <th><input placeholder="Search County"    type="search" ng-model="search.county" /></th>
+          <th><input placeholder="Search State"     type="search" ng-model="search.state" /></th>
+          <th><input placeholder="Search Language"  type="search" ng-model="search.language" /></th>
+        </tr>
+        <tr ng-repeat="u in users.objects">
+          <td ng-bind="u.name"></td>
+          <td><a target="_blank" href="http://github.com/{{u.username}}" ng-bind="u.username"></a></td>
+          <td ng-bind="u.followers"></td>
+          <td ng-bind="u.repos"></td>
+          <td ng-bind="u.location"></td>
+          <td ng-bind="u.county"></td>
+          <td ng-bind="u.state"></td>
+          <td ng-bind="u.language"></td>
+        </tr>
+        <tr>
+          <th colspan="8">
+            <span ng-if="users.pages">
+              <button ng-click="goPage(-1)" ng-if="page > 0">Prev Page</button>
+              Page {{users.page + 1}} of {{users.pages}}
+              <button ng-click="goPage(+1)" ng-if="page < users.pages - 1">Next Page</button>
+            </span>
+            <span ng-if="!users.pages">No Results</span>
+          </th>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
