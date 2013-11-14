@@ -1,7 +1,7 @@
 <!doctype html>
 <html ng-app="gitstar">
 <head>
-  <title>GitStar</title>
+  <title>SoCal Git Users</title>
   <link href="http://simplifiedphp.org/web/typicons.font/font/typicons.min.css" rel="stylesheet" type="text/css" />
   <link href="http://fonts.googleapis.com/css?family=Oxygen+Mono|Open+Sans:400,700" rel="stylesheet" type="text/css" />
   <style>
@@ -53,9 +53,11 @@
         <tr>
           <th colspan="8">
             <span ng-if="users.pages">
-              <button ng-click="goPage(-1)" ng-if="page > 0">Prev Page</button>
+              <button ng-click="goPage(-page)" ng-if="page > 0">First</button>
+              <button ng-click="goPage(-1)" ng-if="page > 0">&laquo; Prev Page</button>
               Page {{users.page + 1}} of {{users.pages}}
-              <button ng-click="goPage(+1)" ng-if="page < users.pages - 1">Next Page</button>
+              <button ng-click="goPage(+1)" ng-if="page < users.pages - 1">Next Page &raquo;</button>
+              <button ng-click="goPage(users.pages - page - 1)" ng-if="page < users.pages - 1">Last</button>
             </span>
             <span ng-if="!users.pages">No Results</span>
           </th>
@@ -93,9 +95,11 @@
         <tr>
           <th colspan="8">
             <span ng-if="users.pages">
-              <button ng-click="goPage(-1)" ng-if="page > 0">Prev Page</button>
+              <button ng-click="goPage(-page)" ng-if="page > 0">First</button>
+              <button ng-click="goPage(-1)" ng-if="page > 0">&laquo; Prev Page</button>
               Page {{users.page + 1}} of {{users.pages}}
-              <button ng-click="goPage(+1)" ng-if="page < users.pages - 1">Next Page</button>
+              <button ng-click="goPage(+1)" ng-if="page < users.pages - 1">Next Page &raquo;</button>
+              <button ng-click="goPage(users.pages - page - 1)" ng-if="page < users.pages - 1">Last</button>
             </span>
             <span ng-if="!users.pages">No Results</span>
           </th>

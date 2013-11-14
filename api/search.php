@@ -21,6 +21,7 @@ query: {}
 # Load Users from Mongo
 users: @plugin.mongo {} "github" "user"
 objects: users.find(query) \
+  .sort {followers: -1} \
   .skip (page * per_page) \
   .limit per_page
 
